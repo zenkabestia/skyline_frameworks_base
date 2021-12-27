@@ -5819,6 +5819,20 @@ public final class Settings {
         public static final String ARCANE_IDLE_MANAGER = "arcane_idle_manager";
 
         /**
+         * GameSpace: List of added games by user
+         * @hide
+         */
+        @Readable
+        public static final String GAMESPACE_GAME_LIST = "gamespace_game_list";
+
+        /**
+         * GameSpace: Whether fullscreen intent will be suppressed while in game session
+         * @hide
+         */
+        @Readable
+        public static final String GAMESPACE_SUPPRESS_FULLSCREEN_INTENT = "gamespace_suppress_fullscreen_intent";
+
+        /**
          * @hide
          */
         public static final String GLOBAL_ACTIONS_LIST = "global_actions_list";
