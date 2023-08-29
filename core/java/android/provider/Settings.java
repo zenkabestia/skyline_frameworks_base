@@ -4701,6 +4701,15 @@ public final class Settings {
         public static final String PEAK_REFRESH_RATE = "peak_refresh_rate";
 
         /**
+         * The user selected refresh rate in frames per second.
+         *
+         * If this isn't set, the system falls back to a device specific default.
+         * @hide
+         */
+        @Readable
+        public static final String SMOOTH_REFRESH_RATE = "smooth_refresh_rate";
+
+        /**
          * Whether refresh rate should be switched to 60Hz on power save mode.
          * @hide
          */
