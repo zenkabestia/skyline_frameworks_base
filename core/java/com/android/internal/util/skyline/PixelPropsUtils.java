@@ -128,6 +128,12 @@ public class PixelPropsUtils {
             "com.meizu.media.music"
     };
 
+    private static final Map<String, Object> propsToChangeROG1;
+    private static final String[] packagesToChangeROG1 = {
+            "com.dts.freefireth",
+            "com.dts.freefiremax"
+    };
+
     // Codenames for currently supported Pixels by Google
     private static final String[] pixelCodenames = {
             "husky",
@@ -161,6 +167,9 @@ public class PixelPropsUtils {
     private static volatile boolean sIsFinsky = false;
 
     static {
+        propsToChangeROG1 = new HashMap<>();
+        propsToChangeROG1.put("MODEL", "ASUS_Z01QD");
+        propsToChangeROG1.put("MANUFACTURER", "asus");
         propsToKeep = new HashMap<>();
         propsToKeep.put(PACKAGE_SI, new ArrayList<>(Collections.singletonList("FINGERPRINT")));
         propsToChangeGeneric = new HashMap<>();
@@ -290,6 +299,9 @@ public class PixelPropsUtils {
             boolean isPixelDevice = Arrays.asList(pixelCodenames).contains(SystemProperties.get(DEVICE));
             if (isPixelDevice) {
                 return;
+            
+            } else if (Arrays.asList(packagesToChangeROG1).contains(packageName)) {
+                propsToChange.putAll(propsToChangeROG1);
             } else if (Arrays.asList(packagesToChangePixel2).contains(packageName)) {
                 propsToChange.putAll(propsToChangePixel2);
             } else if (Arrays.asList(packagesToChangeRecentPixel).contains(packageName)) {
@@ -316,6 +328,16 @@ public class PixelPropsUtils {
         if (packageName.equals(PACKAGE_SI)) {
             setPropValue("FINGERPRINT", String.valueOf(Build.TIME));
             return;
+        } else {
+            // Define Props for GameProps
+            if (Arrays.asList(packagesToChangeROG1).contains(packageName)) {
+                if (DEBUG) Log.d(TAG, "Defining props for: " + packageName);
+                for (Map.Entry<String, Object> prop : propsToChangeROG1.entrySet()) {
+                    String key = prop.getKey();
+                    Object value = prop.getValue();
+                    setPropValue(key, value);
+                }
+            }
         }
     }
 

@@ -73,8 +73,6 @@ public class GamesPropsUtils {
 
     private static final Map<String, Object> propsToChangeF5 = createMap("23049PCD8G", "Xiaomi");
     private static final String[] packagesToChangeF5 = { // spoof as POCO F5
-            "com.dts.freefiremax",
-            "com.dts.freefireth",
             "com.mobile.legends"
     };
 
